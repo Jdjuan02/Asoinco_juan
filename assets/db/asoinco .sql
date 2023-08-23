@@ -20,11 +20,11 @@ ENGINE = InnoDB;
 CREATE TABLE Usuarios (
   idRol INT NOT NULL AUTO_INCREMENT,
   idUsuarios INT NOT NULL,
-  Nombre VARCHAR(45) NOT NULL,
-  Correo VARCHAR(45) NOT NULL,
-  Contraseña VARCHAR(45) NOT NULL,
+  Nombre VARCHAR(50) NOT NULL,
+  Correo VARCHAR(100) NOT NULL,
+  Contrasena VARCHAR(100) NOT NULL,
   Celular VARCHAR(45) NOT NULL,
-  Direccion VARCHAR(45) NOT NULL,
+  Direccion VARCHAR(100) NOT NULL,
   PRIMARY KEY (idRol),
   INDEX ind_usuarios_rol (idRol ASC),
   CONSTRAINT fk_usuarios_rol
@@ -39,12 +39,12 @@ ENGINE = InnoDB;
 -- Table asoinco.Registrar_asistencia
 -- -----------------------------------------------------
 CREATE TABLE Registrar_asistencia (
-  Fecha_registro INT NOT NULL AUTO_INCREMENT,
-  Codigo_coordinador VARCHAR(45) NOT NULL,
-  PRIMARY KEY (Fecha_registro),
-  INDEX ind_registrar_usuarios (Fecha_registro ASC),
+  Codigo_coordinador INT NOT NULL AUTO_INCREMENT,
+  Fecha_registro VARCHAR(50) NOT NULL,
+  INDEX ind_registrar_usuarios (Codigo_coordinador ASC),
+  PRIMARY KEY (Codigo_coordinador),
   CONSTRAINT fk_registrar_usuarios
-    FOREIGN KEY (Fecha_registro)
+    FOREIGN KEY (Codigo_coordinador)
     REFERENCES asoinco.Usuarios (idRol)
     ON DELETE CASCADE
     ON UPDATE CASCADE)
@@ -178,3 +178,9 @@ CREATE TABLE Informes (
     ON DELETE CASCADE
     ON UPDATE CASCADE)
 ENGINE = InnoDB;
+
+
+insert into rol (idRol, Nombre) Values (1, 'Administrador')
+
+
+Insert into usuarios (idRol,idUsuarios, Nombre, Correo, Contrasena, Celular, Direccion) values (1, 1003642333, 'Juan Diego', 'corredorjuan14@gmail.com', 'Corredor02.', '3219087191', 'Cra10#8-16');

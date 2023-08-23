@@ -6,7 +6,7 @@
         protected $idUsuarios;
         protected $Nombre;
         protected $Correo;
-        protected $Contraseña;
+        protected $Contrasena;
         protected $Celular;
         protected $Direccion;
 
@@ -23,16 +23,16 @@
                 die($e->getMessage());
             }
         }
-        public function __construct2($Correo, $Contraseña){
+        public function __construct2($Correo, $Contrasena){
             $this->Correo = $Correo;
-            $this->Contraseña = $Contraseña;
+            $this->Contrasena = $Contrasena;
         }
-        public function __construct7($idRol,$idUsuarios,$Nombre,$Correo,$Contraseña,$Celular,$Direccion){
+        public function __construct7($idRol,$idUsuarios,$Nombre,$Correo,$Contrasena,$Celular,$Direccion){
             $this->idRol = $idRol;
             $this->idUsuarios = $idUsuarios;
             $this->Nombre = $Nombre;
             $this->Correo = $Correo;
-            $this->Contraseña = $Contraseña;
+            $this->Contrasena = $Contrasena;
             $this->Celular = $Celular;
             $this->Direccion = $Direccion;
         }
@@ -66,11 +66,11 @@
             return $this->Correo;
         } 
         # Métodos: userEmail
-        public function setContraseña($Contraseña){
-            $this->Contraseña = $Contraseña;
+        public function setContrasena($Contrasena){
+            $this->Contrasena = $Contrasena;
         } 
-        public function getContraseña(){
-            return $this->Contraseña;
+        public function getContrasena(){
+            return $this->Contrasena;
         } 
         # Métodos: userPass
         public function setCelular($Celular){
@@ -93,10 +93,10 @@
         public function login(){
             $sql = 'SELECT * FROM usuarios
                     WHERE Correo = :correo 
-                    AND Contraseña = :pass';
+                    AND Contrasena = :pass';
             $stmt = $this->dbh->prepare($sql);
             $stmt->bindValue('correo', $this->getCorreo());
-            $stmt->bindValue('pass', sha1($this->getContraseña()));            
+            $stmt->bindValue('pass', sha1($this->getContrasena()));            
             $stmt->execute();
             $userDb = $stmt->fetch();
             
@@ -106,7 +106,7 @@
                     $userDb['idUsuarios'],
                     $userDb['Nombre'],
                     $userDb['Correo'],
-                    $userDb['Contraseña'],
+                    $userDb['Contrasena'],
                     $userDb['Celular'],
                     $userDb['Direccion']
                 );
@@ -116,7 +116,7 @@
             }
         }
         # CU02 - Cerrar Sesión
-        # CU03 - Recuperar Contraseña
+        # CU03 - Recuperar Contrasena
         # CU04 - Registro de Usuario
         # CU05 - Consultar Usuarios
         # CU06 - Actualizar Usuario
