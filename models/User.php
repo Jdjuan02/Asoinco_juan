@@ -93,10 +93,10 @@
         public function login(){
             $sql = 'SELECT * FROM usuarios
                     WHERE Correo = :correo 
-                    AND Contrasena = :pass';
+                    AND Contrasena = :Contrasena';
             $stmt = $this->dbh->prepare($sql);
             $stmt->bindValue('correo', $this->getCorreo());
-            $stmt->bindValue('pass', sha1($this->getContrasena()));            
+            $stmt->bindValue('Contrasena', $this->getContrasena());            
             $stmt->execute();
             $userDb = $stmt->fetch();
             
