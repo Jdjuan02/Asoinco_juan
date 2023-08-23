@@ -6,14 +6,14 @@
             <form action="#" method="POST" class="formuemple">
                 <div class="form-group">
                     <label for="id"><b>Id Rol</b></label>
-                    <input type="text" class="form-control" placeholder="id rol">
+                    <input type="rol" class="form-control" id="rol" name="rol" placeholder="id rol">
                     <label for="rol"><b>Rol</b></label>
-                    <input type="text" class="form-control" placeholder="Escriba su Rol">
+                    <input type="nombre_rol" class="form-control" id="nombre_rol" name="nombre_rol" placeholder="Escriba su Rol">
                 </div>
                 <div class="centrar">
-                    <input type="submit" class="btn btn-success letra3" value="Registrar Rol" name="#" required>
+                    <a type="submit" class="btn btn-success letra3"  name="#" required>Registrar Rol</a>
 
-                    <a type="submit" href="?c=Dashboard" class="btn bg-secondary text-white">Atrás</a>
+                    <a type="submit" href="?c=Landing&a=empleados" class="btn bg-secondary text-white">Atrás</a>
                 </div>
             </form>
             </p>
