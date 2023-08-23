@@ -11,7 +11,7 @@
                     <input type="nombre_rol" class="form-control" id="nombre_rol" name="nombre_rol" placeholder="Escriba su Rol">
                 </div>
                 <div class="centrar">
-                    <a type="submit" class="btn btn-success letra3"  name="#" required>Registrar Rol</a>
+                    <a type="submit" class="btn btn-success letra3" href="?c=Roles&a=registrarRoles" name="#" required>Registrar Rol</a>
 
                     <a type="submit" href="?c=Landing&a=empleados" class="btn bg-secondary text-white">Atrás</a>
                 </div>

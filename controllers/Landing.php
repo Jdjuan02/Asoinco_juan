@@ -75,14 +75,7 @@
             require_once "views/modules/beneficiarios/beneficiarios.view.php";            
             require_once "views/roles/business/footer.php";
         }
-
-        // Crear rol
-        public function crear_rol(){            
-            require_once "views/roles/business/header1.php";
-            require_once "views/modules/crear_rol/crear_rol.view.php";            
-            require_once "views/roles/business/footer.php";
-        }
-
+        
         //Tabla de aspirantes
         public function tablaaspirantes(){            
             require_once "views/roles/business/header1.php";
