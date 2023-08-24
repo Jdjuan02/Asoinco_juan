@@ -34,7 +34,7 @@
                             <!-- Página para registrar beneficiarios y mirarlos en la lista -->
                             <a href="?c=Landing&a=beneficiarios" class="btn btn-primary padin1">BENEFICIARIOS</a>
 
-                            <a href="?c=Landing&a=crear_rol" class="btn btn-primary padin1">CREAR ROL</a>
+                            <a href="?c=Roles&a=crear_rol" class="btn btn-primary padin1">CREAR ROL</a>
 
                             <a href="?c=Landing&a=tablaaspirantes" class="btn btn-primary padin1">TABLA DE ASPIRANTES</a>
                         </div>

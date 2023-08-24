@@ -13,7 +13,7 @@
                 <div class="centrar">
                     <a type="submit" class="btn btn-success letra3" href="?c=Roles&a=registrarRoles" name="#" required>Registrar Rol</a>
 
-                    <a type="submit" href="?c=Landing&a=empleados" class="btn bg-secondary text-white">Atrás</a>
+                    <a type="submit" href="?c=Dashboard" class="btn bg-secondary text-white">Atrás</a>
                 </div>
             </form>
             </p>
@@ -22,37 +22,42 @@
 </div>
 <div class="card">
     <div class="card-body">
-      <h5 class="card-title letra4">Lista de Roles</h5>
-      <table class="table">
-        <thead>
-          <tr>
-            <th scope="col">ID</th>
-            <th scope="col">Nombre Rol</th>
-            <th scope="col">Editar</th>
-            <th scope="col">Borrar</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th scope="row">1</th>
-            <td>Administrador</td>
-            <td><a href="">Editar</a></td>
-            <td><a href="">Borrar</a></td>
-          </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td>Proveedor</td>
-            <td><a href="">Editar</a></td>
-            <td><a href="">Borrar</a></td>
-      
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td>Coordinador</td>
-            <td><a href="">Editar</a></td>
-            <td><a href="">Borrar</a></td>
-          </tr>
-        </tbody>
-      </table>
+        <h5 class="card-title letra4">Lista de Roles</h5>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Nombre Rol</th>
+                    <th scope="col">Editar</th>
+                    <th scope="col">Borrar</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                // Assuming $roles is an array of role objects fetched from your data source
+                if (is_array($roles)) {
+                    foreach ($roles as $rol) : ?>
+                        <tr class="text-center">
+                            <td><?php echo $rol->getidRol(); ?></td>
+                            <td><?php echo $rol->getNombre(); ?></td>
+                            <td>
+                                <a href="?c=Roles&a=actualizarRoles&codigoRol=<?php echo $rol->getRolCode() ?>" class="btn btn-success">
+                                    <i class="fas fa-sync-alt"></i>
+                                </a>
+                            </td>
+                            <td>
+                                <a href="?c=Roles&a=eliminarRoles&codigoRol=<?php echo $rol->getRolCode() ?>" class="btn btn-warning">
+                                    <i class="far fa-trash-alt"></i>
+                                </a>
+                            </td>
+                        </tr>
+                <?php endforeach;
+                } else {
+                    echo '<tr><td colspan="4">No roles found.</td></tr>';
+                }
+                ?>
+            </tbody>
+        </table>
     </div>
-  </div>
+</div>
+

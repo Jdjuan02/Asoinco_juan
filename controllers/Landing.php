@@ -20,6 +20,7 @@
             require_once "views/roles/business/footer.php";
         }
 
+        
         // Visión Index
         public function vision(){            
             require_once "views/roles/business/header.php";

@@ -1,5 +1,4 @@
 <?php
-
     require_once "models/Rol.php";
     class Roles{
         public function __construct(){}
@@ -10,13 +9,13 @@
         public function registrarRoles(){
             if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                 require_once "views/roles/business/header1.php";
-            require_once "views/modules/crear_rol/crear_rol.view.php";            
-            require_once "views/roles/business/footer.php";
+                require_once "views/modules/crear_rol/crear_rol.view.php";
+                require_once "views/roles/business/footer.php";
             }
             if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $rol = new Rol(
                     null,
-                    $_POST['rol']
+                    $_POST['nombreRol']
                 );
                 // Validación
                 $rol->registrarRol();
@@ -52,11 +51,11 @@
         //     }
         // }
         // Eliminar Rol
-        public function eliminarRoles(){
-            $rol = new Rol;
-            $rol->eliminarRol($_GET['codigoRol']);
-            header("Location: ?c=Roles&a=consultarRoles");
-        }
+        // public function eliminarRoles(){
+        //     $rol = new Rol;
+        //     $rol->eliminarRol($_GET['codigoRol']);
+        //     header("Location: ?c=Roles&a=consultarRoles");
+        // }
 
     }
 

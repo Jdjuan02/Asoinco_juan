@@ -54,37 +54,37 @@
             }
         }
         # CU10 - Consultar Roles
-        public function consultarRoles(){
-            try {
-                $rolList = [];
-                $sql = 'SELECT * FROM rol';
-                $stmt = $this->dbh->query($sql);
-                foreach ($stmt->fetchAll() as $rol) {
-                    $rolList[] = new Rol(
-                        $rol['idRol'],
-                        $rol['Nombre']
-                    );
-                }
-                return $rolList;
-            } catch (Exception $e) {
-                die($e->getMessage());
-            }
-        }
+        // public function consultarRoles(){
+        //     try {
+        //         $rolList = [];
+        //         $sql = 'SELECT * FROM rol';
+        //         $stmt = $this->dbh->query($sql);
+        //         foreach ($stmt->fetchAll() as $rol) {
+        //             $rolList[] = new Rol(
+        //                 $rol['idRol'],
+        //                 $rol['Nombre']
+        //             );
+        //         }
+        //         return $rolList;
+        //     } catch (Exception $e) {
+        //         die($e->getMessage());
+        //     }
+        // }
         # CU11 - Actualizar Rol
-        public function actualizarRol(){
-            try {                
-                $sql = 'UPDATE rol SET
-                            idRol = :idRol,
-                            Nombre = :Nombre
-                        WHERE idRol = :idRol';
-                $stmt = $this->dbh->prepare($sql);
-                $stmt->bindValue('idRol', $this->getidRol());
-                $stmt->bindValue('Nombre', $this->getNombre());
-                $stmt->execute();
-            } catch (Exception $e) {
-                die($e->getMessage());
-            }
-        }
+        // public function actualizarRol(){
+        //     try {                
+        //         $sql = 'UPDATE rol SET
+        //                     idRol = :idRol,
+        //                     Nombre = :Nombre
+        //                 WHERE idRol = :idRol';
+        //         $stmt = $this->dbh->prepare($sql);
+        //         $stmt->bindValue('idRol', $this->getidRol());
+        //         $stmt->bindValue('Nombre', $this->getNombre());
+        //         $stmt->execute();
+        //     } catch (Exception $e) {
+        //         die($e->getMessage());
+        //     }
+        // }
         # CU12 - Obtener Rol por Id
         // public function obtenerRolPorId($rolCodigo){
         //     try {
@@ -103,16 +103,16 @@
         //     }
         // }
         # CU12 - Eliminar Rol
-        public function eliminarRol($rolCodigo){
-            try {
-                $sql = 'DELETE FROM rol WHERE idRol = :idRol';
-                $stmt = $this->dbh->prepare($sql);
-                $stmt->bindValue('rolCodigo', $rolCodigo);
-                $stmt->execute();
-            } catch (Exception $e) {
-                die($e->getMessage());
-            }            
-        }
+        // public function eliminarRol($rolCodigo){
+        //     try {
+        //         $sql = 'DELETE FROM rol WHERE idRol = :idRol';
+        //         $stmt = $this->dbh->prepare($sql);
+        //         $stmt->bindValue('rolCodigo', $rolCodigo);
+        //         $stmt->execute();
+        //     } catch (Exception $e) {
+        //         die($e->getMessage());
+        //     }            
+        // }
     }
 
 ?>
