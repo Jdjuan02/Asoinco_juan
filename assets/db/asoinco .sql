@@ -180,7 +180,7 @@ CREATE TABLE Informes (
 ENGINE = InnoDB;
 
 
-insert into rol (idRol, Nombre) Values (1, 'Administrador')
+insert into rol (idRol, Nombre) Values (1, 'Administrador');  
 
 
 Insert into usuarios (idRol,idUsuarios, Nombre, Correo, Contrasena, Celular, Direccion) values (1, 1003642333, 'Juan Diego', 'corredorjuan14@gmail.com', 'Corredor02.', '3219087191', 'Cra10#8-16');

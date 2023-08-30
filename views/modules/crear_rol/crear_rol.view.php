@@ -34,12 +34,12 @@
             </thead>
             <tbody>
                 <?php
-                // Assuming $roles is an array of role objects fetched from your data source
-                if (is_array($roles)) {
-                    foreach ($roles as $rol) : ?>
+               
+                if (is_array($rol)) {
+                    foreach ($rol as $roles) : ?>
                         <tr class="text-center">
-                            <td><?php echo $rol->getidRol(); ?></td>
-                            <td><?php echo $rol->getNombre(); ?></td>
+                            <td><?php echo $roles['idRol']; ?></td>
+                            <td><?php echo $roles['Nombre']; ?></td>
                             <td>
                                 <a href="?c=Roles&a=actualizarRoles&codigoRol=<?php echo $rol->getRolCode() ?>" class="btn btn-success">
                                     <i class="fas fa-sync-alt"></i>
