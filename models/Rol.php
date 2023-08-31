@@ -13,7 +13,7 @@
                 $i = func_num_args();
                 if (method_exists($this, $f = '__construct' . $i)) {
                     call_user_func_array(array($this, $f), $a);
-                }                
+                }
             } catch (Exception $e) {
                 die($e->getMessage());
             }
@@ -21,7 +21,6 @@
         public function __construct2($idRol, $Nombre){
             $this->idRol = $idRol;
             $this->Nombre = $Nombre;
-            // Validar
         }
         # Métodos: RolCode
         public function setidRol($idRol){
@@ -43,13 +42,11 @@
         # CU09 - Registrar Rol
         public function registrarRol(){
             try {                
-                $sql = 'INSERT INTO rol VALUES (:idRol,:Nombre)';  
+                $sql = 'INSERT INTO ROL VALUES (:rolCodigo,:rolNombre)';  
                 $stmt = $this->dbh->prepare($sql);                
-                $stmt->bindValue('idRol', $this->getidRol());
-                $stmt->bindValue('Nombre', $this->getNombre());
-                // Validar
+                $stmt->bindValue('rolCodigo', $this->getidRol());
+                $stmt->bindValue('rolNombre', $this->getNombre());                
                 $stmt->execute();
-              
             } catch (Exception $e) {
                 die($e->getMessage());
             }
@@ -58,7 +55,7 @@
         public function consultarRoles(){
             try {
                 $rolList = [];
-                $sql = 'SELECT * FROM rol';
+                $sql = 'SELECT * FROM ROL';
                 $stmt = $this->dbh->query($sql);
                 foreach ($stmt->fetchAll() as $rol) {
                     $rolList[] = new Rol(
@@ -74,13 +71,13 @@
         # CU11 - Actualizar Rol
         public function actualizarRol(){
             try {                
-                $sql = 'UPDATE rol SET
-                            idRol = :idRol,
-                            Nombre = :Nombre
-                        WHERE idRol = :idRol';
+                $sql = 'UPDATE ROL SET
+                            idRol = :rolCodigo,
+                            Nombre = :rolNombre
+                        WHERE rol_codigo = :rolCodigo';
                 $stmt = $this->dbh->prepare($sql);
-                $stmt->bindValue('idRol', $this->getidRol());
-                $stmt->bindValue('Nombre', $this->getNombre());
+                $stmt->bindValue('rolCodigo', $this->getidRol());
+                $stmt->bindValue('rolNombre', $this->getNombre());
                 $stmt->execute();
             } catch (Exception $e) {
                 die($e->getMessage());
@@ -89,14 +86,14 @@
         # CU12 - Obtener Rol por Id
         public function obtenerRolPorId($rolCodigo){
             try {
-                $sql = "SELECT * FROM ROLES WHERE rol_codigo=:rolCodigo";
+                $sql = "SELECT * FROM ROL WHERE idRol=:rolCodigo";
                 $stmt = $this->dbh->prepare($sql);
                 $stmt->bindValue('rolCodigo', $rolCodigo);
                 $stmt->execute();
                 $rolDb = $stmt->fetch();
                 $rol = new Rol(
-                    $rolDb['rol_codigo'],
-                    $rolDb['rol_nombre']
+                    $rolDb['idRol'],
+                    $rolDb['Nombre']
                 );
                 return $rol;
             } catch (Exception $e) {
@@ -106,7 +103,7 @@
         # CU12 - Eliminar Rol
         public function eliminarRol($rolCodigo){
             try {
-                $sql = 'DELETE FROM rol WHERE idRol = :idRol';
+                $sql = 'DELETE FROM ROL WHERE idRol = :rolCodigo';
                 $stmt = $this->dbh->prepare($sql);
                 $stmt->bindValue('rolCodigo', $rolCodigo);
                 $stmt->execute();

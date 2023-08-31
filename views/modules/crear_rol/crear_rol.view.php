@@ -1,14 +1,14 @@
 <div class="card-group">
     <div class="card">
         <div class="card-body">
-            <h5 class="card-title mod letra4"><b>Formulario Crear Rol</b></h5>  
+            <h5 class="card-title mod letra4"><b>Formulario Crear Rol</b></h5>
             <p class="card-text">
             <form action="#" method="POST" class="formuemple">
                 <div class="form-group">
                     <label for="id"><b>Id Rol</b></label>
                     <input type="rol" class="form-control" id="rol" name="rol" placeholder="id rol">
                     <label for="rol"><b>Rol</b></label>
-                    <input type="nombre_rol" class="form-control" id="nombre_rol" name="nombre_rol" placeholder="Escriba su Rol">
+                    <input type="text" class="form-control" placeholder="Nombre Nuevo Rol" name="rol" required>
                 </div>
                 <div class="centrar">
                     <a type="submit" class="btn btn-success letra3" href="?c=Roles&a=registrarRoles" name="#" required>Registrar Rol</a>
@@ -33,31 +33,46 @@
                 </tr>
             </thead>
             <tbody>
-                <?php
-               
-                if (is_array($rol)) {
-                    foreach ($rol as $roles) : ?>
-                        <tr class="text-center">
-                            <td><?php echo $roles['idRol']; ?></td>
-                            <td><?php echo $roles['Nombre']; ?></td>
-                            <td>
-                                <a href="?c=Roles&a=actualizarRoles&codigoRol=<?php echo $rol->getRolCode() ?>" class="btn btn-success">
-                                    <i class="fas fa-sync-alt"></i>
-                                </a>
-                            </td>
-                            <td>
-                                <a href="?c=Roles&a=eliminarRoles&codigoRol=<?php echo $rol->getRolCode() ?>" class="btn btn-warning">
-                                    <i class="far fa-trash-alt"></i>
-                                </a>
-                            </td>
-                        </tr>
-                <?php endforeach;
-                } else {
-                    echo '<tr><td colspan="4">No roles found.</td></tr>';
-                }
-                ?>
+            <?php foreach ($roles as $rol) : ?>
+                     <tr class="text-center">
+                         <td><?php echo $rol->getidrol(); ?></td>
+                         <td><?php echo $rol->getNombre(); ?></td>
+                         <td>
+                             <a href="?c=Roles&a=actualizarRoles&codigoRol=<?php echo $rol->getidrol() ?>" class="btn btn-success">
+                                 <i class="fas fa-sync-alt"></i>
+                             </a>
+                         </td>
+                         <td>
+                             <a href="?c=Roles&a=eliminarRoles&codigoRol=<?php echo $rol->getidrol() ?>" class="btn btn-warning">
+                                 <i class="far fa-trash-alt"></i>
+                             </a>
+                         </td>
+                     </tr>
+                 <?php endforeach; ?>
             </tbody>
         </table>
     </div>
 </div>
 
+
+<div class="card-group">
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title mod letra4"><b>Formulario Crear Rol</b></h5>
+      <p class="card-text">
+      <form action="#" method="POST" class="formuemple">
+        <div class="form-group">
+          <label for="rol"><b>Nombre Rol:</b></label>
+          <input type="text" class="form-control" placeholder="Nombre Nuevo Rol" name="rol" required>
+        </div>
+        <div class="centrar">
+          <input class="btn btn-success letra3" type="submit" value="Registrar Rol">
+
+          <a type="submit" href="?c=Dashboard" class="btn bg-secondary text-white">Atrás</a>
+         
+        </div>
+      </form>
+      </p>
+    </div>
+  </div>
+</div>
