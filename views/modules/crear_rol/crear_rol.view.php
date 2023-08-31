@@ -1,24 +1,23 @@
 <div class="card-group">
-    <div class="card">
-        <div class="card-body">
-            <h5 class="card-title mod letra4"><b>Formulario Crear Rol</b></h5>
-            <p class="card-text">
-            <form action="#" method="POST" class="formuemple">
-                <div class="form-group">
-                    <label for="id"><b>Id Rol</b></label>
-                    <input type="rol" class="form-control" id="rol" name="rol" placeholder="id rol">
-                    <label for="rol"><b>Rol</b></label>
-                    <input type="text" class="form-control" placeholder="Nombre Nuevo Rol" name="rol" required>
-                </div>
-                <div class="centrar">
-                    <a type="submit" class="btn btn-success letra3" href="?c=Roles&a=registrarRoles" name="#" required>Registrar Rol</a>
-
-                    <a type="submit" href="?c=Dashboard" class="btn bg-secondary text-white">Atrás</a>
-                </div>
-            </form>
-            </p>
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title mod letra4"><b>Formulario Crear Rol</b></h5>
+      <p class="card-text">
+      <form action="#" method="POST" class="formuemple">
+        <div class="form-group">
+          <label for="rol"><b>Nombre Rol:</b></label>
+          <input type="text" class="form-control" placeholder="Nombre Nuevo Rol" name="rol" required>
         </div>
+        <div class="centrar">
+          <input class="btn btn-success letra3" type="submit" value="Registrar Rol">
+
+          <a type="submit" href="?c=Dashboard" class="btn bg-secondary text-white">Atrás</a>
+         
+        </div>
+      </form>
+      </p>
     </div>
+  </div>
 </div>
 <div class="card">
     <div class="card-body">
@@ -55,24 +54,3 @@
 </div>
 
 
-<div class="card-group">
-  <div class="card">
-    <div class="card-body">
-      <h5 class="card-title mod letra4"><b>Formulario Crear Rol</b></h5>
-      <p class="card-text">
-      <form action="#" method="POST" class="formuemple">
-        <div class="form-group">
-          <label for="rol"><b>Nombre Rol:</b></label>
-          <input type="text" class="form-control" placeholder="Nombre Nuevo Rol" name="rol" required>
-        </div>
-        <div class="centrar">
-          <input class="btn btn-success letra3" type="submit" value="Registrar Rol">
-
-          <a type="submit" href="?c=Dashboard" class="btn bg-secondary text-white">Atrás</a>
-         
-        </div>
-      </form>
-      </p>
-    </div>
-  </div>
-</div>

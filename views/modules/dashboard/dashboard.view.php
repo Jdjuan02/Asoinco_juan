@@ -29,7 +29,7 @@
 
                             <h5 class="card-title centrar letra3 "><b>CALIDAD HUMANA</b></h5>
 
-                            <a href="?c=Landing&a=empleados" class="btn btn-primary padin1">EMPLEADOS</a>
+                            <a href="?c=Empleados&a=registrarUsuarios" class="btn btn-primary padin1">EMPLEADOS</a>
 
                             <!-- Página para registrar beneficiarios y mirarlos en la lista -->
                             <a href="?c=Landing&a=beneficiarios" class="btn btn-primary padin1">BENEFICIARIOS</a>

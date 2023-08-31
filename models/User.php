@@ -2,13 +2,14 @@
     class User{
         # Atributos
         private $dbh;
-        protected $idRol;
-        protected $idUsuarios;
-        protected $Nombre;
-        protected $Correo;
-        protected $Contrasena;
-        protected $Celular;
-        protected $Direccion;
+        protected $rolCode;
+        protected $rolName;
+        protected $userCode;
+        protected $userName;
+        protected $userLastName;
+        protected $userEmail;
+        protected $userPass;
+        protected $userStatus;
 
         # Sobrecarga de Constructores
         public function __construct(){
@@ -23,104 +24,224 @@
                 die($e->getMessage());
             }
         }
-        public function __construct2($Correo, $Contrasena){
-            $this->Correo = $Correo;
-            $this->Contrasena = $Contrasena;
+        public function __construct2($userEmail, $userPass){
+            $this->userEmail = $userEmail;
+            $this->userPass = $userPass;
         }
-        public function __construct7($idRol,$idUsuarios,$Nombre,$Correo,$Contrasena,$Celular,$Direccion){
-            $this->idRol = $idRol;
-            $this->idUsuarios = $idUsuarios;
-            $this->Nombre = $Nombre;
-            $this->Correo = $Correo;
-            $this->Contrasena = $Contrasena;
-            $this->Celular = $Celular;
-            $this->Direccion = $Direccion;
+        public function __construct7($rolCode,$userCode,$userName,$userLastName,$userEmail,$userPass,$userStatus){
+            $this->rolCode = $rolCode;
+            $this->userCode = $userCode;
+            $this->userName = $userName;
+            $this->userLastName = $userLastName;
+            $this->userEmail = $userEmail;
+            $this->userPass = $userPass;
+            $this->userStatus = $userStatus;
+        }
+        public function __construct8($rolCode,$rolName,$userCode,$userName,$userLastName,$userEmail,$userPass,$userStatus){
+            unset($this->dbh);
+            $this->rolCode = $rolCode;
+            $this->rolName = $rolName;
+            $this->userCode = $userCode;
+            $this->userName = $userName;
+            $this->userLastName = $userLastName;
+            $this->userEmail = $userEmail;
+            $this->userPass = $userPass;
+            $this->userStatus = $userStatus;
         }
 
         # Métodos: RolCode
-        public function setidRol($idRol){
-            $this->idRol = $idRol;
+        public function setRolCode($rolCode){
+            $this->rolCode = $rolCode;
         } 
-        public function getidRol(){
-            return $this->idRol;
+        public function getRolCode(){
+            return $this->rolCode;
+        } 
+        # Métodos: RolName
+        public function setRolName($rolName){
+            $this->rolName = $rolName;
+        } 
+        public function getRolName(){
+            return $this->rolName;
         } 
         # Métodos: userCode
-        public function setidUsuarios($idUsuarios){
-            $this->idUsuarios = $idUsuarios;
+        public function setUserCode($userCode){
+            $this->userCode = $userCode;
         } 
-        public function getidUsuarios(){
-            return $this->idUsuarios;
+        public function getUserCode(){
+            return $this->userCode;
         } 
         # Métodos: userName
-        public function setNombre($Nombre){
-            $this->Nombre = $Nombre;
+        public function setUserName($userName){
+            $this->userName = $userName;
         } 
-        public function getNombre(){
-            return $this->Nombre;
+        public function getUserName(){
+            return $this->userName;
         } 
         # Métodos: userLastName
-        public function setCorreo($Correo){
-            $this->Correo = $Correo;
+        public function setUserLastName($userLastName){
+            $this->userLastName = $userLastName;
         } 
-        public function getCorreo(){
-            return $this->Correo;
+        public function getUserLastName(){
+            return $this->userLastName;
         } 
         # Métodos: userEmail
-        public function setContrasena($Contrasena){
-            $this->Contrasena = $Contrasena;
+        public function setUserEmail($userEmail){
+            $this->userEmail = $userEmail;
         } 
-        public function getContrasena(){
-            return $this->Contrasena;
+        public function getUserEmail(){
+            return $this->userEmail;
         } 
         # Métodos: userPass
-        public function setCelular($Celular){
-            $this->Celular = $Celular;
+        public function setUserPass($userPass){
+            $this->userPass = $userPass;
         } 
-        public function getCelular(){
-            return $this->Celular;
+        public function getUserPass(){
+            return $this->userPass;
         } 
         # Métodos: userStatus
-        public function setDireccion($Direccion){
-            $this->Direccion = $Direccion;
+        public function setUserStatus($userStatus){
+            $this->userStatus = $userStatus;
         } 
-        public function getDireccion(){
-            return $this->Direccion;
+        public function getUserStatus(){
+            return $this->userStatus;
         }
         
         // 2da Parte. Persistencia a la Bases de Datos
 
         # CU01 - Iniciar Sesión
         public function login(){
-            $sql = 'SELECT * FROM usuarios
-                    WHERE Correo = :correo 
-                    AND Contrasena = :Contrasena';
+            
+            $sql = 'SELECT * FROM ROLES                     
+                    INNER JOIN USUARIOS 
+                    ON roles.rol_codigo = usuarios.rol_codigo
+                    WHERE usuario_correo = :usuario_correo AND usuario_pass = :usuario_pass';
             $stmt = $this->dbh->prepare($sql);
-            $stmt->bindValue('correo', $this->getCorreo());
-            $stmt->bindValue('Contrasena', $this->getContrasena());            
+            $stmt->bindValue('usuario_correo', $this->getUserEmail());
+            $stmt->bindValue('usuario_pass', sha1($this->getUserPass()));
             $stmt->execute();
             $userDb = $stmt->fetch();
-            
             if ($userDb) {
                 $user = new User(
-                    $userDb['idRol'],
-                    $userDb['idUsuarios'],
-                    $userDb['Nombre'],
-                    $userDb['Correo'],
-                    $userDb['Contrasena'],
-                    $userDb['Celular'],
-                    $userDb['Direccion']
+                    $userDb['rol_codigo'],
+                    $userDb['rol_nombre'],
+                    $userDb['usuario_codigo'],
+                    $userDb['usuario_nombre'],
+                    $userDb['usuario_apellido'],
+                    $userDb['usuario_correo'],
+                    $userDb['usuario_pass'],
+                    $userDb['usuario_estado']
                 );
                 return $user;
             } else {
                 return false;
             }
         }
-        # CU02 - Cerrar Sesión
-        # CU03 - Recuperar Contrasena
+        # CU03 - Recuperar Contraseña
         # CU04 - Registro de Usuario
+        public function registrarUsuario() {
+            try {
+                $sql = 'INSERT INTO USUARIOS VALUES (
+                            :rolCode,
+                            :userCode,
+                            :userName,
+                            :userLastName,
+                            :userEmail,
+                            :userPass,
+                            :userStatus
+                        )';
+                $stmt = $this->dbh->prepare($sql);
+                $stmt->bindValue('rolCode', $this->getRolCode());
+                $stmt->bindValue('userCode', $this->getUserCode());
+                $stmt->bindValue('userName', $this->getUserName());
+                $stmt->bindValue('userLastName', $this->getUserLastName());
+                $stmt->bindValue('userEmail', $this->getUserEmail());
+                $stmt->bindValue('userPass', sha1($this->getUserPass()));
+                $stmt->bindValue('userStatus', $this->getUserStatus());            
+                $stmt->execute();
+            } catch (Exception $e) {
+                die($e->getMessage());
+            }
+        }
         # CU05 - Consultar Usuarios
+        public function consultarUsuarios() {
+            try {
+                $userList = [];
+                $sql = 'SELECT * FROM USUARIOS';
+                $stmt = $this->dbh->query($sql);
+                foreach ($stmt->fetchAll() as $user) {
+                    $userList[] = new User(
+                        $user['rol_codigo'],
+                        $user['usuario_codigo'],
+                        $user['usuario_nombre'],
+                        $user['usuario_apellido'],
+                        $user['usuario_correo'],
+                        $user['usuario_pass'],
+                        $user['usuario_estado']
+                    );
+                }
+                return $userList;
+            } catch (Exception $e) {
+                die($e->getMessage());
+            }
+        }
         # CU06 - Actualizar Usuario
+        public function actualizarUsuario() {
+            try {
+                $sql = 'UPDATE USUARIOS SET
+                            rol_codigo = :rolCode,
+                            usuario_codigo = :userCode,
+                            usuario_nombre = :userName,
+                            usuario_apellido = :userLastName,
+                            usuario_correo = :userEmail,
+                            usuario_pass = :userPass,
+                            usuario_estado = :userStatus
+                        WHERE usuario_codigo = :userCode';
+                $stmt = $this->dbh->prepare($sql);
+                $stmt->bindValue('rolCode', $this->getRolCode());
+                $stmt->bindValue('userCode',$this->getUserCode());
+                $stmt->bindValue('userName',$this->getUserName());
+                $stmt->bindValue('userLastName',$this->getUserLastName());
+                $stmt->bindValue('userEmail',$this->getUserEmail());
+                $stmt->bindValue('userPass',sha1($this->getUserPass()));
+                $stmt->bindValue('userStatus',$this->getUserStatus());
+                $stmt->execute();
+                
+            } catch (Exception $e) {
+                die($e->getMessage());
+            }
+        }
         # CU07 - Obtener Usuario por Id
+        public function obtenerUserPorId($userCode) {
+            try {
+                $sql = "SELECT * FROM USUARIOS WHERE usuario_codigo=:userCode";
+                $stmt = $this->dbh->prepare($sql);
+                $stmt->bindValue('userCode', $userCode);
+                $stmt->execute();
+                $userDB = $stmt->fetch();
+                $user = new User(
+                    $userDB['rol_codigo'],
+                    $userDB['usuario_codigo'],
+                    $userDB['usuario_nombre'],
+                    $userDB['usuario_apellido'],
+                    $userDB['usuario_correo'],
+                    $userDB['usuario_pass'],
+                    $userDB['usuario_estado']
+                );
+                return $user;
+            } catch (Exception $e) {
+                die($e->getMessage());
+            }
+        }
         # CU08 - Eliminar Usuario
+        public function eliminarUsuario($userCode) {
+            try {
+                $sql = 'DELETE FROM USUARIOS WHERE usuario_codigo = :userCode';
+                $stmt = $this->dbh->prepare($sql);
+                $stmt->bindValue('userCode', $userCode);
+                $stmt->execute();
+            } catch (Exception $e) {
+                die($e->getMessage());
+            }
+        }
     }
 ?>

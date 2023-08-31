@@ -64,11 +64,7 @@
 
         // Calidad humana: Empleados, Beneficiarios, Crear rol y Tabla aspirantes.
         // Empleados
-        public function empleados(){            
-            require_once "views/roles/business/header1.php";
-            require_once "views/modules/empleados/empleados.view.php";            
-            require_once "views/roles/business/footer.php";
-        }
+        
 
         // Beneficiarios
         public function beneficiarios(){            
